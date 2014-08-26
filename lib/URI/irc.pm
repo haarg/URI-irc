@@ -38,6 +38,4 @@ sub channel {
   return $channel;
 }
 
-
-
 1;

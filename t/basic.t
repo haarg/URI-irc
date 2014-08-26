@@ -20,4 +20,16 @@ for my $url (
     "correct canonicalization of $url";
 }
 
+isa_ok(URI->new('ircs://irc.perl.org/'), 'URI::ircs');
+for my $url (
+  'ircs://irc.perl.org/perl',
+  'ircs://irc.perl.org:6697/perl',
+) {
+  my $uri = URI->new($url);
+  is $uri->port, 6697,
+    "correct port from $url";
+  is $uri->canonical->as_string, 'ircs://irc.perl.org:6697/%23perl',
+    "correct canonicalization of $url";
+}
+
 done_testing;
